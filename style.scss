@@ -1,0 +1,71 @@
+$color-primary: red;
+$color-tertiary: green;
+@mixin article-card($color, $border-clor, $font-size) {
+  color: $color;
+  border-color: $border-clor;
+  font-size: $font-size;
+}
+%text {
+  color: $color-tertiary;
+  text-align: center;
+  text-decoration: underline blue;
+}
+
+.exercise {
+  border: 1px solid $color-primary;
+  text-align: center;
+
+  h1 {
+    @extend %text;
+  }
+  h2 {
+    @extend %text;
+    border: 10px solid red;
+    display: inline-block;
+    justify-content: center;
+  }
+
+  .x {
+    display: inline-block;
+    text-align: center;
+    width: 24.6%;
+    border: 1px solid $color-primary;
+    margin: 0;
+    padding: 0;
+    @include article-card(blue, $color-primary, 1rem);
+  }
+
+  .box {
+    display: inline;
+
+    ul {
+      list-style-type: none;
+      li {
+        display: inline-block;
+        border: 1px solid black;
+        width: 45px;
+        height: 45px;
+        margin-left: 10px;
+      }
+      @for $i from 1 through 19 {
+        .box-#{$i} {
+          background-color: lighten(black, $i * 5%);
+          @if ($i==10) {
+            background-color: blue;
+            color: red;
+          }
+        }
+      }
+    }
+  }
+  .s {
+    .a {
+      display: block;
+      text-align: center;
+      @include article-card(blue, $color-primary, 24px);
+      border: 1px solid $color-primary;
+      margin: 10px;
+      padding: 0;
+    }
+  }
+}
